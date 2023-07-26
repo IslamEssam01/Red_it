@@ -1,0 +1,58 @@
+.user-img-label {
+    display: inline-block;
+    cursor: pointer;
+    font-size: 1.563rem;
+
+    /* margin-right: 2rem; */
+
+    width: 10rem;
+
+    color: #abacb6;
+}
+
+.user-img {
+    cursor: pointer;
+}
+
+.showUserImg {
+    display: none;
+    width: 5rem;
+    height: 5rem;
+    border: 2px solid #808291;
+    border-radius: 50%;
+}
+
+.already-reg:link,
+.already-reg:visited {
+    font-size: 1.563rem;
+    color: #abacb6;
+
+    transition: all 0.3s;
+}
+
+.already-reg:hover,
+.already-reg:active {
+    color: #e0e0ff;
+}
+
+.register-button {
+    cursor: pointer;
+
+    border: none;
+    font-size: 1.563rem;
+    font-weight: 700;
+    font-family: inherit;
+
+    padding: 1.5rem 6rem;
+
+    border-radius: 9px;
+
+    color: inherit;
+    background-color: #1d203e;
+
+    transition: all 0.3s;
+}
+
+.register-button:hover {
+    background-color: #171a32;
+}

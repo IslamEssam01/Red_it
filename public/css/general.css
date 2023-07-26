@@ -1,0 +1,87 @@
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    line-height: 1;
+
+    color: #fff;
+    background-color: #1d203e;
+
+    overflow: auto;
+
+    position: relative;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+::-webkit-scrollbar {
+    width: 1rem;
+    height: 1rem;
+}
+
+/* Set the background color of the scrollbar */
+::-webkit-scrollbar-track {
+    background-color: #2c2f48;
+}
+
+/* Set the color and shape of the scrollbar thumb */
+::-webkit-scrollbar-thumb {
+    background-color: #393d5d;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #4d506d;
+}
+
+/* Helper Classes */
+
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.justify-space-between {
+    justify-content: space-between;
+}
+
+.justify-space-around {
+    justify-content: space-around;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.align-flex-start {
+    align-items: flex-start;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.right {
+    right: 0;
+}
+
+.container {
+    margin: 0 auto;
+}

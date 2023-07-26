@@ -1,0 +1,53 @@
+.checkbox {
+    gap: 0.5rem;
+}
+.checkbox input {
+    cursor: pointer;
+}
+
+.checkbox label {
+    font-size: 1.563rem;
+    font-weight: 200;
+    letter-spacing: 0.5px;
+    /* color: #111; */
+}
+
+.login-button {
+    cursor: pointer;
+
+    border: none;
+    font-size: 1.953rem;
+    font-weight: 700;
+    font-family: inherit;
+
+    padding: 1rem 2rem;
+
+    border-radius: 9px;
+
+    color: inherit;
+    background-color: #1d203e;
+
+    transition: all 0.3s;
+}
+
+.login-button:hover {
+    background-color: #171a32;
+}
+
+.form-footer {
+    gap: 2rem;
+    font-size: 1.563rem;
+}
+
+.form-footer a:link,
+.form-footer a:visited {
+    font-weight: 700;
+    color: #e0e0ff;
+
+    transition: all 0.3s;
+}
+
+.form-footer a:hover,
+.form-footer a:active {
+    color: #abacb6;
+}
