@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 
 class LoginController extends Controller
 {
@@ -27,7 +29,8 @@ class LoginController extends Controller
         if (Auth::attempt($credentials, $request->rememberMe)) {
             $request->session()->regenerate();
 
-            return redirect('/');
+            return redirect()->intended();
+
         }
 
 

@@ -1,3 +1,5 @@
+"use strict";
+
 const userImg = document.querySelector(".user-img");
 userImg.onchange = (e) => {
     const [file] = userImg.files;

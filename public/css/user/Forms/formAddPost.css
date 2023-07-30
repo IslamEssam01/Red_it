@@ -1,0 +1,21 @@
+.add-post-btn {
+    cursor: pointer;
+
+    border: none;
+    font-size: 1.953rem;
+    font-weight: 700;
+    font-family: inherit;
+
+    padding: 1rem 2rem;
+
+    border-radius: 9px;
+
+    color: inherit;
+    background-color: #1d203e;
+
+    transition: all 0.3s;
+}
+
+.add-post-btn:hover {
+    background-color: #171a32;
+}

@@ -5,6 +5,9 @@
         <form action={{ route('register') }} class="form flex flex-col" method="POST" enctype="multipart/form-data">
             @csrf
             <h1 class="form-header">Register</h1>
+            @error('email')
+                <p class="error">{{ $message }}</p>
+            @enderror
             <input type="text" name="name" id="name" class="name" placeholder="Name" required>
             <input type="email" name="email" id="email" class="email" placeholder="Email" required>
             <input type="password" name="password" id="password" class="password" placeholder="Password" required>

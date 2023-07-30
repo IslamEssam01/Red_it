@@ -67,6 +67,15 @@
     color: #ffffff80;
 }
 
+.search-modal {
+    z-index: 10;
+}
+
+.search-modal .search {
+    box-shadow: 0 0 4px #000;
+    background-color: #1d203e;
+}
+
 .header-login-button:link,
 .header-login-button:visited {
     color: #fff;

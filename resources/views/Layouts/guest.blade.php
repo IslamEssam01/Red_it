@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <link rel="stylesheet" href={{ asset('css/general.css') }}>
+    <link rel="stylesheet" href={{ asset('css/home.css') }}>
     {{-- <link rel="stylesheet" href={{ asset('css/user/style.css') }}> --}}
     <link rel="stylesheet" href={{ asset('css/guest/header.css') }}>
     <link rel="stylesheet" href={{ asset('css/guest/Forms/formGeneral.css') }}>
@@ -17,8 +18,13 @@
 </head>
 
 <body>
+
+    <div class="display-none overlay"></div>
     @include('Guest.Includes.header')
     @yield('content')
+
+    <script src={{ asset('js/searchModal.js') }}></script>
+
 </body>
 
 </html>
