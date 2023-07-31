@@ -1,3 +1,12 @@
+/* The Style for the error message in login or register */
+.error {
+    font-size: 1.563rem;
+    color: #ff1a1a;
+}
+
+/* ********************************** */
+
+/* General Form Styling */
 .form-box {
     max-width: 50rem;
 
@@ -14,7 +23,8 @@
     gap: 2rem;
 }
 
-.form input {
+.form input,
+.form textarea {
     border: none;
     box-shadow: inset 0 0 0 2px #161824;
     border-radius: 6px;

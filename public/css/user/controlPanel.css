@@ -1,3 +1,4 @@
+/* The main panel styling */
 .panel {
     width: 100rem;
 
@@ -21,14 +22,16 @@
     padding: 2rem;
 }
 
-/* Info Section */
+/* ********************************** */
+
+/* The editing info section styling */
 .info {
     gap: 2rem;
 }
 .form-info {
     gap: 2rem;
 }
-.form input {
+.control-panel-input {
     border: none;
     box-shadow: inset 0 0 0 2px #161824;
     border-radius: 6px;
@@ -123,7 +126,9 @@
     background-color: #a80000;
 }
 
-/* Change Password Section */
+/* ********************************** */
+
+/* The Change Password Section Styling*/
 
 .password-change,
 .password-change-hidden,
@@ -184,7 +189,9 @@
     background-color: #171a32;
 }
 
-/* Change Image */
+/* ********************************** */
+
+/* The Change Image Section Styling*/
 
 .change-img {
     margin-bottom: 4rem;
@@ -221,8 +228,9 @@
 .confirm-img-change {
     transition: all 0.4s linear, background-color 0.3s;
 }
+/* ********************************** */
 
-/* Delete Account */
+/* Delete Account Button Styling*/
 
 .delete-account-form {
     position: absolute;
@@ -254,6 +262,9 @@
     background-color: #650000;
 }
 
+/* ********************************** */
+
+/* Logout Button Styling */
 .logout-btn:link,
 .logout-btn:visited {
     color: #fff;

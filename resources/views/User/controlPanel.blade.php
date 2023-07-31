@@ -1,28 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('Layouts.main')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <link rel="stylesheet" href={{ asset('css/general.css') }}>
-    {{-- <link rel="stylesheet" href={{ asset('css/user/sidebar.css') }}> --}}
-    <link rel="stylesheet" href={{ asset('css/user/header.css') }}>
-    {{-- <link rel="stylesheet" href={{ asset('css/guest/Forms/formGeneral.css') }}> --}}
-    <link rel="stylesheet" href={{ asset('css/user/controlPanel.css') }}>
-
-
-
-    <title>Red_it</title>
-</head>
-
-<body>
-    <div class="display-none overlay"></div>
-
-    @include('User.Includes.header')
-
-
+@section('content')
     <main>
         <div class="flex flex-col container panel">
             <div class="flex info panel-section">
@@ -30,8 +8,8 @@
                     class="form form-info flex margin-right-md">
                     @csrf
                     @method('PUT')
-                    <input type="email" name="email" id="email" value="{{ $user->email }}" class="disabled"
-                        disabled required>
+                    <input type="email" name="email" id="email" value="{{ $user->email }}" class="disabled" disabled
+                        required>
                     <input type="text" name="name" id="name" value="{{ $user->name }}" class="disabled"
                         disabled required>
 
@@ -49,7 +27,8 @@
                         action={{ route('userEdit.updatePassword', $user->id) }} method="POST">
                         @csrf
                         @method('PUT')
-                        <input type="password" name="password" id="passwordChange" placeholder="New Password" required>
+                        <input type="password" name="password" id="passwordChange" placeholder="New Password"
+                            class="control-panel-input" required>
 
                     </form>
 
@@ -65,7 +44,7 @@
                     @csrf
                     @method('PUT')
                     <label for="img" class="change-img-btn">Change image</label>
-                    <input type="file" name="image" id="img" class="user-img display-none">
+                    <input type="file" name="image" id="img" class="user-img display-none control-panel-input">
                 </form>
 
                 <button form="change-img-form" class="confirm-img-change confirm-btn hide">Confirm</button>
@@ -84,8 +63,6 @@
         </div>
 
     </main>
-    <script src={{ asset('js/searchModal.js') }}></script>
-    <script src={{ asset('js/controPanel.js') }}></script>
-</body>
-
-</html>
+    {{-- <script src={{ asset('js/searchModal.js') }}></script> --}}
+    <script src={{ asset('js/controlPanel.js') }}></script>
+@endsection

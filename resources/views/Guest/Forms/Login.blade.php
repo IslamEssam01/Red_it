@@ -1,4 +1,4 @@
-@extends('Layouts.guest')
+@extends('Layouts.main')
 
 @section('content')
     <div class="form-box flex flex-col container">

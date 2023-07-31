@@ -34,10 +34,6 @@ class LikeController extends Controller
     public function likeGuest($post_id)
     {
 
-
-
-
-
         Like::updateOrCreate(
             ['post_id' => $post_id, 'user_id' => Auth::user()->id],
             ['like' => true]

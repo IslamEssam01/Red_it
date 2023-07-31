@@ -8,6 +8,8 @@
     overflow-y: auto;
 }
 
+/* The post basic and outer styling */
+
 .posts {
     margin-top: 10rem;
     margin-bottom: 10rem;
@@ -40,7 +42,9 @@
     border-top-right-radius: 9px;
     border-bottom-right-radius: 9px;
 }
+/* ********************************** */
 
+/* The post's user styling */
 .user-info {
     position: absolute;
     left: 1rem;
@@ -63,12 +67,17 @@
     font-size: 1.953rem;
     font-weight: 700;
 }
+/* ********************************** */
+
+/* Created at styling */
 
 .created-at {
     font-size: 1.25rem;
     color: #999999;
 }
+/* ********************************** */
 
+/* Post dropdown menu styling (the post actions like copy and delete) */
 .dropdown-box {
     position: absolute;
     right: 1rem;
@@ -87,7 +96,6 @@
     color: #bbb;
 }
 .dropdown-content {
-
     position: absolute;
     right: 0;
 
@@ -125,13 +133,17 @@
     padding-bottom: 0rem;
     border: none;
 }
+/* ********************************** */
 
+/* The Post content styling */
 .content {
     margin-top: 4rem;
 
     font-size: 2.441rem;
 }
+/* ********************************** */
 
+/* The post actions styling (like,dislike,comment) */
 .post-actions {
     position: absolute;
 
@@ -172,7 +184,9 @@
 .action-icon.filled {
     fill: #d5d5da;
 }
+/* ********************************** */
 
+/* The comment section Styling */
 .comments-modal-box {
     position: fixed;
 
@@ -304,3 +318,5 @@
 .add-comment-btn:hover {
     background-color: #171a32;
 }
+
+/* ********************************** */

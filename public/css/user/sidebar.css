@@ -1,3 +1,4 @@
+/* The Sidebar box styling */
 .side-bar {
     width: 25rem;
     height: calc(100vh - 100%);
@@ -19,7 +20,9 @@
 
     /* top: 0; */
 }
+/* ********************************** */
 
+/* User Styling */
 .user-img {
     width: 10rem;
     height: 10rem;
@@ -36,6 +39,9 @@
     margin-bottom: 4rem;
 }
 
+/* ********************************** */
+
+/* The Posts boxes in sidebar styling */
 .sidebar-posts {
     width: 100%;
 

@@ -1,93 +1,99 @@
-@extends('Layouts.user')
+@extends('Layouts.main')
 
 
 
 @section('content')
-    <nav class="side-bar flex flex-col align-center ">
+    @auth
+
+        <aside class="side-bar flex flex-col align-center ">
 
 
 
-        @if (strpos($user->image, 'images') === 0)
-            <a href="#"> <img src={{ asset("storage/{$user->image}") }} alt="user image" class="user-img"></a>
-        @else
-            <a href="#"> <img src={{ $user->image }} alt="user image" class="user-img"></a>
-        @endif
+            @if (strpos($user->image, 'images') === 0)
+                <a href="#"> <img src={{ asset("storage/{$user->image}") }} alt="user image" class="user-img"></a>
+            @else
+                <a href="#"> <img src={{ $user->image }} alt="user image" class="user-img"></a>
+            @endif
 
-        <a href="#" class="user-name">{{ $user->name }}</a>
+            <a href="#" class="user-name">{{ $user->name }}</a>
 
-        <div class="sidebar-posts flex flex-col ">
-            <div class="flex justify-space-between">
-                <p class="box-title">Recent Posts</p>
-                <a href="#" class="box-link">See All</a>
-            </div>
+            <nav class="sidebar-posts flex flex-col ">
+                <div class="flex justify-space-between">
+                    <p class="box-title">Recent Posts</p>
+                    <a href="#" class="box-link">See All</a>
+                </div>
 
-            <div class="sidebar-posts-box flex flex-col">
+                <div class="sidebar-posts-box flex flex-col">
 
-                @foreach ($posts->reverse()->take(4) as $post)
-                    <div class="sidebar-post flex align-center">
-                        <a href="#" title="{{ $post->user->name }}"><img
-                                src={{ asset("storage/{$post->user->image}") }} alt="user image" class="user-img-sm"></a>
+                    @foreach ($posts->reverse()->take(4) as $post)
+                        <div class="sidebar-post flex align-center">
+                            <a href="#" title="{{ $post->user->name }}"><img
+                                    src={{ asset("storage/{$post->user->image}") }} alt="user image" class="user-img-sm"></a>
 
-                        @if (preg_match('/\p{Arabic}/u', mb_substr($post->content, 0, 1)))
-                            <a dir="rtl" href="#" class="sidebar-post-content">{{ $post->content }}</a>
-                        @else
-                            <a dir="ltr" href="#" class="sidebar-post-content">{{ $post->content }}</a>
-                        @endif
-                    </div>
-                @endforeach
+                            @if (preg_match('/\p{Arabic}/u', mb_substr($post->content, 0, 1)))
+                                <a dir="rtl" href="#" class="sidebar-post-content">{{ $post->content }}</a>
+                            @else
+                                <a dir="ltr" href="#" class="sidebar-post-content">{{ $post->content }}</a>
+                            @endif
+                        </div>
+                    @endforeach
 
-            </div>
-        </div>
-        <div class="sidebar-posts flex flex-col ">
-            <div class="flex justify-space-between">
-                <p class="box-title">Liked Posts</p>
-                <a href="#" class="box-link">See All</a>
-            </div>
+                </div>
+            </nav>
+            <nav class="sidebar-posts flex flex-col ">
+                <div class="flex justify-space-between">
+                    <p class="box-title">Liked Posts</p>
+                    <a href="#" class="box-link">See All</a>
+                </div>
 
-            <div class="sidebar-posts-box flex flex-col">
+                <div class="sidebar-posts-box flex flex-col">
 
-                @foreach (Auth::user()->likedPosts->take(4) as $post)
-                    <div class="sidebar-post flex align-center">
-                        <a href="#" title="{{ $post->user->name }}"><img
-                                src={{ asset("storage/{$post->user->image}") }} alt="user image" class="user-img-sm"></a>
+                    @foreach (Auth::user()->likedPosts->take(4) as $post)
+                        <div class="sidebar-post flex align-center">
+                            <a href="#" title="{{ $post->user->name }}"><img
+                                    src={{ asset("storage/{$post->user->image}") }} alt="user image" class="user-img-sm"></a>
 
-                        @if (preg_match('/\p{Arabic}/u', mb_substr($post->content, 0, 1)))
-                            <a dir="rtl" href="#" class="sidebar-post-content">{{ $post->content }}</a>
-                        @else
-                            <a dir="ltr" href="#" class="sidebar-post-content">{{ $post->content }}</a>
-                        @endif
-                    </div>
-                @endforeach
-
-
-            </div>
-        </div>
-        <div class="sidebar-posts flex flex-col ">
-            <div class="flex justify-space-between">
-                <p class="box-title">Your Posts</p>
-                <a href="#" class="box-link">See All</a>
-            </div>
-
-            <div class="sidebar-posts-box flex flex-col align-center">
-
-                @foreach (Auth::user()->posts->reverse()->take(4) as $post)
-                    <div class="sidebar-post flex align-center">
-                        @if (preg_match('/\p{Arabic}/u', mb_substr($post->content, 0, 1)))
-                            <a dir="rtl" href="#" class="sidebar-post-content">{{ $post->content }}</a>
-                        @else
-                            <a dir="ltr" href="#" class="sidebar-post-content">{{ $post->content }}</a>
-                        @endif
-                    </div>
-                @endforeach
+                            @if (preg_match('/\p{Arabic}/u', mb_substr($post->content, 0, 1)))
+                                <a dir="rtl" href="#" class="sidebar-post-content">{{ $post->content }}</a>
+                            @else
+                                <a dir="ltr" href="#" class="sidebar-post-content">{{ $post->content }}</a>
+                            @endif
+                        </div>
+                    @endforeach
 
 
-            </div>
-        </div>
+                </div>
+            </nav>
+            <nav class="sidebar-posts flex flex-col ">
+                <div class="flex justify-space-between">
+                    <p class="box-title">Your Posts</p>
+                    <a href="#" class="box-link">See All</a>
+                </div>
 
-    </nav>
-    <main class="main ">
+                <div class="sidebar-posts-box flex flex-col align-center">
+
+                    @foreach (Auth::user()->posts->reverse()->take(4) as $post)
+                        <div class="sidebar-post flex align-center">
+                            @if (preg_match('/\p{Arabic}/u', mb_substr($post->content, 0, 1)))
+                                <a dir="rtl" href="#" class="sidebar-post-content">{{ $post->content }}</a>
+                            @else
+                                <a dir="ltr" href="#" class="sidebar-post-content">{{ $post->content }}</a>
+                            @endif
+                        </div>
+                    @endforeach
+
+
+                </div>
+            </nav>
+
+        </aside>
+    @endauth
+
+    {{-- The main is styled in css for user , if guest the width takes the full page --}}
+    <main @guest style="width: 100vw;" @endguest class="main ">
 
         <div class="posts flex flex-col container ">
+            {{-- The posts var come from the route , reverse to order it from latest to first --}}
             @foreach ($posts->reverse() as $key => $post)
                 <div class="post-box">
                     <div class="user-info flex align-center">
@@ -102,7 +108,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="dropdown-box">
+                    <div class="dropdown-box post-options">
                         <div class="dropdown">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="currentColor" class="w-6 h-6 post-ellipsis">
@@ -126,6 +132,8 @@
                     </div>
                     <div class="content-box">
 
+                        {{-- Checks if the post starts with arabic or not --}}
+
                         @if (preg_match('/\p{Arabic}/u', mb_substr($post->content, 0, 1)))
                             <p dir="rtl" class="content">{{ $post->content }}</p>
                         @else
@@ -134,27 +142,27 @@
                     </div>
 
                     <div class="post-actions flex">
-                        <form action={{ route('post.like', $post->id) }} method="POST" class="display-none"
+                        <form action={{ route('post.like', $post->id) }} method="GET" class="display-none"
                             id="like-form{{ $key }}">
                             @csrf
                         </form>
                         <button form="like-form{{ $key }}" title="like" class="like-btn">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke-width="1.5" stroke="currentColor"
-                                class="w-6 h-6 action-icon @if (\App\Models\Like::where('like', true)->where('post_id', $post->id)->where('user_id', Auth::user()->id)->exists()) ) filled @endif">
+                                stroke-width="1.5" stroke="currentColor" {{-- fills the icon if already liked/disliked --}}
+                                class="w-6 h-6 action-icon @if (Auth::check() && $user->didLike($post->id, true)) filled @endif  ">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M6.633 10.5c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75A2.25 2.25 0 0116.5 4.5c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23H5.904M14.25 9h2.25M5.904 18.75c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 01-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 10.203 4.167 9.75 5 9.75h1.053c.472 0 .745.556.5.96a8.958 8.958 0 00-1.302 4.665c0 1.194.232 2.333.654 3.375z" />
                             </svg>
 
                         </button>
-                        <form action="{{ route('post.dislike', $post->id) }} "method="POST" class="display-none"
+                        <form action="{{ route('post.dislike', $post->id) }} "method="GET" class="display-none"
                             id="dislike-form{{ $key }}">
                             @csrf
                         </form>
                         <button form="dislike-form{{ $key }}" title="dislike" class="dislike-btn"><svg
                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor"
-                                class="w-6 h-6 action-icon  @if (\App\Models\Like::where('like', false)->where('post_id', $post->id)->where('user_id', Auth::user()->id)->exists()) ) filled @endif">
+                                stroke="currentColor" {{-- fills the icon if already liked/disliked --}}
+                                class="w-6 h-6 action-icon   @if (Auth::check() && $user->didLike($post->id, false)) filled @endif ">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M7.5 15h2.25m8.024-9.75c.011.05.028.1.052.148.591 1.2.924 2.55.924 3.977a8.96 8.96 0 01-.999 4.125m.023-8.25c-.076-.365.183-.75.575-.75h.908c.889 0 1.713.518 1.972 1.368.339 1.11.521 2.287.521 3.507 0 1.553-.295 3.036-.831 4.398C20.613 14.547 19.833 15 19 15h-1.053c-.472 0-.745-.556-.5-.96a8.95 8.95 0 00.303-.54m.023-8.25H16.48a4.5 4.5 0 01-1.423-.23l-3.114-1.04a4.5 4.5 0 00-1.423-.23H6.504c-.618 0-1.217.247-1.605.729A11.95 11.95 0 002.25 12c0 .434.023.863.068 1.285C2.427 14.306 3.346 15 4.372 15h3.126c.618 0 .991.724.725 1.282A7.471 7.471 0 007.5 19.5a2.25 2.25 0 002.25 2.25.75.75 0 00.75-.75v-.633c0-.573.11-1.14.322-1.672.304-.76.93-1.33 1.653-1.715a9.04 9.04 0 002.86-2.4c.498-.634 1.226-1.08 2.032-1.08h.384" />
                             </svg>
@@ -183,6 +191,7 @@
                                     <div class="comment-box flex flex-col">
                                         <a href="#" class="commenter-name">{{ $comment->user->name }}</a>
 
+                                        {{-- Checks if the comment starts with arabic or not --}}
                                         @if (preg_match('/\p{Arabic}/u', mb_substr($comment->content, 0, 1)))
                                             <p dir="rtl" class="comment-content">{{ $comment->content }}</p>
                                         @else
@@ -198,18 +207,16 @@
                                         </svg>
                                         <div class="dropdown-content comment-dropdown display-none">
                                             <button class="dropdown-btn copy-comment-btn">copy comment</button>
-                                            {{-- <button class="dropdown-btn">copy link</button> --}}
                                             @if (Auth::check() && Auth::user()->id === $comment->user->id)
                                                 <form action={{ route('post.deleteComment', $comment->id) }}
-                                                    class="display-none delete-comment-form" id="delete-post-form{{ $commentKey }}"
-                                                    method="POST"
+                                                    class="display-none delete-comment-form"
+                                                    id="delete-post-form{{ $commentKey }}" method="POST"
                                                     onsubmit="return confirm('Are you sure you want to delete this comment? this cannot be undone')">
                                                     @csrf
                                                     @method('DELETE')
                                                 </form>
                                                 <button form="delete-post-form{{ $commentKey }}"
-                                                    class="dropdown-btn delete-comment-btn">Delete
-                                                    comment</button>
+                                                    class="dropdown-btn delete-comment-btn">Delete comment</button>
                                             @endif
                                         </div>
                                     </div>
@@ -221,7 +228,7 @@
                     </div>
 
                     <form action={{ route('post.addComment', $post->id) }} id="comment-form{{ $key }}"
-                        class="flex comment-form" method="POST">
+                        class="flex comment-form" method="GET">
                         @csrf
                         <input type="text" name="content" id="comment" class="comment-input"
                             placeholder="Enter Comment" required>
@@ -232,8 +239,13 @@
         </div>
     </main>
 
+    <script src={{ asset('js/postDropDowns.js') }}></script>
+    <script src={{ asset('js/commentsModal.js') }}></script>
     <script src={{ asset('js/post.js') }}></script>
-    <script>
-        window.auth = {!! json_encode(auth()->user()) !!};
-    </script>
+    @auth
+
+        <script>
+            window.auth = {!! json_encode(auth()->user()) !!};
+        </script>
+    @endauth
 @endsection

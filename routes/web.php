@@ -19,11 +19,11 @@ use App\Http\Controllers\UserController;
 |
 */
 
+
 Route::get('/', function () {
-    if (Auth::check())
-        return view('User.home')->with('user', Auth::user())->with('posts', Post::all());
-    else
-        return view('Guest.home')->with('posts', Post::all());
+    // Only with user if there is a logged in user
+    return view('home')->with('user', Auth::check() ? Auth::user() : null)
+        ->with('posts', Post::all());
 
 })->name('home');
 

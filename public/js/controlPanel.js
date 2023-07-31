@@ -1,5 +1,72 @@
 "use strict";
 
+// All functions goes HERE
+
+// The function to make edit info request
+function editInfo(event, form) {
+    event.preventDefault();
+    const formData = new FormData(form);
+    fetch(form.action, {
+        method: "POST",
+        headers: {
+            "X-CSRF-TOKEN": "@csrf",
+            "X-HTTP-Method-Override": "PUT",
+        },
+        body: formData,
+    })
+        .then((data) => {
+            // Handle the response data here
+            console.log(data);
+        })
+        .catch((error) => {
+            // Handle any errors that occurred during the fetch
+            console.error(error);
+        });
+}
+
+function changePassword(event, form) {
+    event.preventDefault();
+    const formData = new FormData(form);
+    fetch(form.action, {
+        method: "POST",
+        headers: {
+            "X-CSRF-TOKEN": "@csrf",
+            "X-HTTP-Method-Override": "PUT",
+        },
+        body: formData,
+    })
+        .then((data) => {
+            // Handle the response data here
+            console.log(data);
+        })
+        .catch((error) => {
+            // Handle any errors that occurred during the fetch
+            console.error(error);
+        });
+}
+
+function changeImage(event, form) {
+    event.preventDefault();
+    const formData = new FormData(form);
+    fetch(form.action, {
+        method: "POST",
+        headers: {
+            "X-CSRF-TOKEN": "@csrf",
+            "X-HTTP-Method-Override": "PUT",
+        },
+        body: formData,
+    })
+        .then((data) => {
+            // Handle the response data here
+            console.log(data);
+        })
+        .catch((error) => {
+            // Handle any errors that occurred during the fetch
+            console.error(error);
+        });
+}
+
+// Manipulation the edit info section in the controlPanel
 const editBtn = document.querySelector(".enable-btn");
 const saveBtn = document.querySelector(".save-btn");
 const infoForm = document.querySelector(".form-info");
@@ -10,6 +77,8 @@ for (const input of infoInputs) {
     originalInputs.push(input.value);
 }
 
+// When edit button pressed , the save button appears and edit becomes cancel button ,
+// when cancel button pressed the save button disappears and cancel becomes edit button
 editBtn.addEventListener("click", function () {
     if (!editBtn.classList.contains("cancel-btn")) {
         for (const input of infoInputs) {
@@ -34,32 +103,14 @@ editBtn.addEventListener("click", function () {
     saveBtn.classList.toggle("hide");
 });
 
+// Makes the form request happen in place ,without redirecting
 infoForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const formData = new FormData(infoForm);
-    fetch(infoForm.action, {
-        method: "POST",
-        headers: {
-            "X-CSRF-TOKEN": "@csrf",
-            "X-HTTP-Method-Override": "PUT",
-        },
-        body: formData,
-    })
-        .then((data) => {
-            // Handle the response data here
-            console.log(data);
-        })
-        .catch((error) => {
-            // Handle any errors that occurred during the fetch
-            console.error(error);
-        });
-
+    editInfo(e, infoForm);
     for (const [i, input] of infoInputs.entries()) {
         input.disabled = true;
         input.classList.add("disabled");
         originalInputs[i] = input.value;
     }
-    // editBtn.classList.add("enable-btn");
     editBtn.classList.remove("cancel-btn");
     editBtn.textContent = "Edit Information";
     saveBtn.classList.add("hide");
@@ -85,25 +136,7 @@ cancelPasswordChangeBtn.addEventListener("click", function () {
 });
 
 changePasswordForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const formData = new FormData(changePasswordForm);
-    fetch(changePasswordForm.action, {
-        method: "POST",
-        headers: {
-            "X-CSRF-TOKEN": "@csrf",
-            "X-HTTP-Method-Override": "PUT",
-        },
-        body: formData,
-    })
-        .then((data) => {
-            // Handle the response data here
-            console.log(data);
-        })
-        .catch((error) => {
-            // Handle any errors that occurred during the fetch
-            console.error(error);
-        });
-
+    changePasswordBtn(e, changePasswordForm);
     changePasswordHidden.classList.add("hide");
 
     changePasswordForm.querySelector("#passwordChange").value = "";
@@ -127,6 +160,7 @@ userImg.onchange = (e) => {
     }
 };
 
+// if the change image got canceled , the original image is returned
 cancelImgChange.addEventListener("click", function () {
     showUserImg.src = originalImg;
     confirmImgChange.classList.add("hide");
@@ -135,25 +169,7 @@ cancelImgChange.addEventListener("click", function () {
 });
 
 changeImageForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const formData = new FormData(changeImageForm);
-    fetch(changeImageForm.action, {
-        method: "POST",
-        headers: {
-            "X-CSRF-TOKEN": "@csrf",
-            "X-HTTP-Method-Override": "PUT",
-        },
-        body: formData,
-    })
-        .then((data) => {
-            // Handle the response data here
-            console.log(data);
-        })
-        .catch((error) => {
-            // Handle any errors that occurred during the fetch
-            console.error(error);
-        });
-
+    changeImage(e, changeImageForm);
     originalImg = showUserImg.src;
     confirmImgChange.classList.add("hide");
     cancelImgChange.classList.add("hide");

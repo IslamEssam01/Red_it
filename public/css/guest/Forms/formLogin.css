@@ -1,3 +1,4 @@
+/* Remember Me Styling */
 .checkbox {
     gap: 0.5rem;
 }
@@ -11,7 +12,9 @@
     letter-spacing: 0.5px;
     /* color: #111; */
 }
+/* ********************************** */
 
+/* Login Button Styling */
 .login-button {
     cursor: pointer;
 
@@ -33,7 +36,9 @@
 .login-button:hover {
     background-color: #171a32;
 }
+/* ********************************** */
 
+/* Form Footer Styling (the register options) */
 .form-footer {
     gap: 2rem;
     font-size: 1.563rem;
@@ -51,4 +56,3 @@
 .form-footer a:active {
     color: #abacb6;
 }
-

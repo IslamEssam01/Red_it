@@ -1,4 +1,4 @@
-@extends('Layouts.guest')
+@extends('Layouts.main')
 
 @section('content')
     <div class="form-box flex flex-col container">
@@ -14,7 +14,7 @@
             <div class="image-box flex align-center">
                 <label for="image" class="user-img-label">User Image</label>
                 <input accept="image/png , image/jpeg , image/jpg ,image/webp" type='file' id="image" name="image"
-                    class="user-img" required />
+                    class="user-img-input" required />
             </div>
             <img class="showUserImg" src="" alt="your image" />
             <div class="flex align-center justify-space-between">

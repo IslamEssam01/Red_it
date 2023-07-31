@@ -1,3 +1,4 @@
+/* User Image Styling */
 .user-img-label {
     display: inline-block;
     cursor: pointer;
@@ -10,7 +11,7 @@
     color: #abacb6;
 }
 
-.user-img {
+.user-img-input {
     cursor: pointer;
 }
 
@@ -22,6 +23,9 @@
     border-radius: 50%;
 }
 
+/* ********************************** */
+
+/* Register Button & login link Styling */
 .already-reg:link,
 .already-reg:visited {
     font-size: 1.563rem;
