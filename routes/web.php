@@ -66,8 +66,13 @@ Route::middleware('auth')->group(function () {
     });
 
 
+    Route::get('/likedPosts', [UserController::class, 'likedPosts'])->name('likedPosts');
+    Route::get('/myPosts', [UserController::class, 'userPosts'])->name('userPosts');
+
 
 
 });
 
 Route::post('/addComment', [CommentController::class, 'showPartial'])->name('showPartialComment');
+
+Route::get('/search', [PostController::class, 'search'])->name('search');

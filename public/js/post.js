@@ -2,6 +2,40 @@
 
 // All functions go HERE
 
+function postTime(date) {
+    function calcPassedSeconds(date1, date2) {
+        return Math.trunc(Math.abs(date1 - date2) / 1000);
+    }
+
+    const now = new Date();
+
+    const passedSeconds = calcPassedSeconds(now, date);
+    // console.log(passedSeconds);
+    // console.log(date);
+    // console.log(now);
+    if (passedSeconds <= 60) return `Created ${passedSeconds} Seconds ago`;
+    if (Math.trunc(passedSeconds / 60) <= 60)
+        return `Created ${Math.trunc(passedSeconds / 60)} Minutes ago`;
+    if (Math.trunc(passedSeconds / (60 * 60)) <= 24)
+        return `Created ${Math.trunc(passedSeconds / (60 * 60))} Hours ago`;
+    if (Math.trunc(passedSeconds / (60 * 60 * 24)) <= 7)
+        return `Created ${Math.trunc(passedSeconds / (60 * 60 * 24))} Days ago`;
+    if (Math.trunc(passedSeconds / (60 * 60 * 24 * 7)) <= 4)
+        return `Created ${Math.trunc(
+            passedSeconds / (60 * 60 * 24 * 7)
+        )} Weeks ago`;
+
+    const formattedDate = Intl.DateTimeFormat(navigator.language, {
+        day: "numeric",
+        month: "numeric",
+        year: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        second: "numeric",
+    }).format(date);
+    return `Created at : ${formattedDate}`;
+}
+
 function likeOrDislikePost(event, form) {
     event.preventDefault();
     const formData = new FormData(form);
@@ -26,6 +60,8 @@ function addComment(event, form) {
     event.preventDefault();
 
     const formData = new FormData(form);
+    form.querySelector(".comment-input").value = "";
+
     fetch(form.action, {
         method: "POST",
         headers: {
@@ -36,8 +72,6 @@ function addComment(event, form) {
         .then((data) => {
             // Handle the response data here
             // console.log(data);
-
-            form.querySelector(".comment-input").value = "";
 
             fetch("addComment", {
                 method: "POST",
@@ -131,6 +165,11 @@ function deleteComment(event, btn) {
         });
 }
 
+const createdAtLabels = document.querySelectorAll(".created-at");
+createdAtLabels.forEach((label) => {
+    label.textContent = postTime(new Date(label.textContent));
+});
+
 const copyPostBtns = document.querySelectorAll(".copy-post-btn");
 
 // Add click event listener to each button
@@ -202,11 +241,6 @@ commentForms.forEach((form) => {
         if (auth) {
             addComment(e, form);
         }
-
-        // form.previousElementSibling.insertAdjacentHTML(
-        //     "beforeend",
-        //     commentHTML
-        // );
     });
 });
 

@@ -70,4 +70,18 @@ class UserController extends Controller
         return redirect('/');
         // $this->logout($request);
     }
+
+
+    public function likedPosts()
+    {
+
+
+        return view('User.likedPosts')->with('posts', Auth::user()->likedPosts);
+
+    }
+
+    public function userPosts()
+    {
+        return view('User.userPosts')->with('user', Auth::user())->with('posts',Auth::user()->posts);
+    }
 }

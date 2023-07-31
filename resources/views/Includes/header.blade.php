@@ -1,13 +1,12 @@
 <header class="header flex justify-space-between align-center">
 
     <div class="logo-box flex align-center">
-        <a href={{ route('home') }}><img src={{ asset('storage/images/logo/logo.webp') }} alt="logo"
-                class="logo"></a>
+        <a href={{ route('home') }}><img src={{ asset('/logo/logo.webp') }} alt="logo" class="logo"></a>
 
         <a href={{ route('home') }} class="logo-text">Red_it</a>
     </div>
 
-    <form action="#" class="search-form" method="POST">
+    <form action={{ route('search') }} class="search-form" method="GET">
         @csrf
         <span class="search-icon">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -23,7 +22,7 @@
         <div class="user-options flex align-center justify-space-around ">
 
 
-            <a href="#" title="Your Posts">
+            <a href={{ route('userPosts') }} title="Your Posts">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-6 h-6 user-options-icon">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />

@@ -40,4 +40,13 @@ class PostController extends Controller
         return redirect()->route('home');
 
     }
+
+    public function search(Request $request)
+    {
+
+        $searchKeyWord = $request->search;
+        $posts = Post::where('content', 'like', '%' . $searchKeyWord . '%')->get();
+
+        return view('search')->with('user', Auth::check() ? Auth::user() : null)->with('posts', $posts);
+    }
 }

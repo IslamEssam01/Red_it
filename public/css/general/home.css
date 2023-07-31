@@ -1,5 +1,6 @@
 .main {
-    width: calc(100vw - 25rem);
+    width: 100vw;
+
     height: calc(100vh - 100%);
     position: absolute;
     left: 0;
@@ -21,20 +22,15 @@
 }
 .post-box {
     width: 100%;
-    max-height: 40rem;
+    max-height: 50rem;
 
     overflow-y: auto;
+    overflow-x: hidden;
 
     background-color: #2c2f48;
 
-    padding: 5rem;
-    padding-bottom: 7rem;
-
+    padding: 1rem;
     border-radius: 9px;
-
-    gap: 4rem;
-
-    position: relative;
 }
 
 .post-box::-webkit-scrollbar-track {
@@ -44,12 +40,17 @@
 }
 /* ********************************** */
 
+/* The Post header styling */
+
+.post-header {
+    box-shadow: 0 -1px 0px #808291 inset;
+    padding: 0 1rem 1rem;
+    width: calc(100% + 2rem);
+}
+/* ********************************** */
+
 /* The post's user styling */
 .user-info {
-    position: absolute;
-    left: 1rem;
-    top: 1rem;
-
     gap: 1rem;
 }
 .post-user-img {
@@ -78,11 +79,11 @@
 /* ********************************** */
 
 /* Post dropdown menu styling (the post actions like copy and delete) */
-.dropdown-box {
+/* .dropdown-box {
     position: absolute;
     right: 1rem;
     top: 1rem;
-}
+} */
 .dropdown {
     position: relative;
 }
@@ -136,25 +137,37 @@
 /* ********************************** */
 
 /* The Post content styling */
-.content {
-    margin-top: 4rem;
 
-    font-size: 2.441rem;
+.content-box {
+    overflow-y: auto;
+    /* margin-top: 2rem; */
+    width: calc(100% + 2rem);
+    /* align-self: center; */
+    /* margin: 0 auto; */
+    /* margin-bottom: 1rem; */
+    padding: 2rem;
 }
+.content {
+    max-width: 100%;
+    font-size: 2.441rem;
+    /* overflow: hidden; */
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+
+    line-height: 3rem;
+}
+
 /* ********************************** */
 
 /* The post actions styling (like,dislike,comment) */
 .post-actions {
-    position: absolute;
-
     /* width: 100%; */
+    width: calc(100% + 2rem);
 
     justify-content: center;
 
-    bottom: 1rem;
-
-    right: 50%;
-    transform: translateX(50%);
+    box-shadow: 0 1px 0px #808291 inset;
+    padding-top: 1rem;
 }
 
 .post-actions button {

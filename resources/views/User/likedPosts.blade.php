@@ -3,98 +3,10 @@
 
 
 @section('content')
-    @auth
-
-        <aside class="side-bar flex flex-col align-center ">
-
-
-
-            @if (strpos($user->image, 'images') === 0)
-                <a href="#"> <img src={{ asset("storage/{$user->image}") }} alt="user image" class="user-img"></a>
-            @else
-                <a href="#"> <img src={{ $user->image }} alt="user image" class="user-img"></a>
-            @endif
-
-            <a href="#" class="user-name">{{ $user->name }}</a>
-
-            <nav class="sidebar-posts flex flex-col ">
-                <div class="flex justify-space-between">
-                    <p class="box-title">Recent Posts</p>
-                    <a href={{ route('home') }} class="box-link">See All</a>
-                </div>
-
-                <div class="sidebar-posts-box flex flex-col">
-
-                    @foreach ($posts->reverse()->take(4) as $post)
-                        <div class="sidebar-post flex align-center">
-                            <a href="#" title="{{ $post->user->name }}"><img
-                                    src={{ asset("storage/{$post->user->image}") }} alt="user image" class="user-img-sm"></a>
-
-                            @if (preg_match('/\p{Arabic}/u', mb_substr($post->content, 0, 1)))
-                                <a dir="rtl" href="#" class="sidebar-post-content">{{ $post->content }}</a>
-                            @else
-                                <a dir="ltr" href="#" class="sidebar-post-content">{{ $post->content }}</a>
-                            @endif
-                        </div>
-                    @endforeach
-
-                </div>
-            </nav>
-            <nav class="sidebar-posts flex flex-col ">
-                <div class="flex justify-space-between">
-                    <p class="box-title">Liked Posts</p>
-                    <a href={{ route('likedPosts') }} class="box-link">See All</a>
-                </div>
-
-                <div class="sidebar-posts-box flex flex-col">
-
-                    @foreach (Auth::user()->likedPosts->take(4) as $post)
-                        <div class="sidebar-post flex align-center">
-                            <a href="#" title="{{ $post->user->name }}"><img
-                                    src={{ asset("storage/{$post->user->image}") }} alt="user image" class="user-img-sm"></a>
-
-                            @if (preg_match('/\p{Arabic}/u', mb_substr($post->content, 0, 1)))
-                                <a dir="rtl" href="#" class="sidebar-post-content">{{ $post->content }}</a>
-                            @else
-                                <a dir="ltr" href="#" class="sidebar-post-content">{{ $post->content }}</a>
-                            @endif
-                        </div>
-                    @endforeach
-
-
-                </div>
-            </nav>
-            <nav class="sidebar-posts flex flex-col ">
-                <div class="flex justify-space-between">
-                    <p class="box-title">Your Posts</p>
-                    <a href={{ route('userPosts') }} class="box-link">See All</a>
-                </div>
-
-                <div class="sidebar-posts-box flex flex-col align-center">
-
-                    @foreach (Auth::user()->posts->reverse()->take(4) as $post)
-                        <div class="sidebar-post flex align-center">
-                            @if (preg_match('/\p{Arabic}/u', mb_substr($post->content, 0, 1)))
-                                <a dir="rtl" href="#" class="sidebar-post-content">{{ $post->content }}</a>
-                            @else
-                                <a dir="ltr" href="#" class="sidebar-post-content">{{ $post->content }}</a>
-                            @endif
-                        </div>
-                    @endforeach
-
-
-                </div>
-            </nav>
-
-        </aside>
-    @endauth
-
-    {{-- The main is styled in css as 100vw , if the user is authed we subtract the sidebar from it --}}
-    <main @auth style="width: calc(100vw - 25rem);" @endauth class="main ">
+    <main class="main ">
 
         <div class="posts flex flex-col container ">
-            {{-- The posts var come from the route , reverse to order it from latest to first --}}
-            @foreach ($posts->reverse() as $key => $post)
+            @foreach ($posts as $key => $post)
                 <div class="post-box flex flex-col align-center">
                     <div class="flex justify-space-between post-header">
                         <div class="user-info flex align-center">
@@ -151,8 +63,7 @@
                         </form>
                         <button form="like-form{{ $key }}" title="like" class="like-btn">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" {{-- fills the icon if already liked/disliked --}}
-                                class="w-6 h-6 action-icon @if (Auth::check() && $user->didLike($post->id, true)) filled @endif  ">
+                                stroke="currentColor" class="w-6 h-6 action-icon filled">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M6.633 10.5c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75A2.25 2.25 0 0116.5 4.5c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23H5.904M14.25 9h2.25M5.904 18.75c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 01-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 10.203 4.167 9.75 5 9.75h1.053c.472 0 .745.556.5.96a8.958 8.958 0 00-1.302 4.665c0 1.194.232 2.333.654 3.375z" />
                             </svg>
@@ -164,17 +75,15 @@
                         </form>
                         <button form="dislike-form{{ $key }}" title="dislike" class="dislike-btn"><svg
                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" {{-- fills the icon if already liked/disliked --}}
-                                class="w-6 h-6 action-icon   @if (Auth::check() && $user->didLike($post->id, false)) filled @endif ">
+                                stroke="currentColor" class="w-6 h-6 action-icon">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M7.5 15h2.25m8.024-9.75c.011.05.028.1.052.148.591 1.2.924 2.55.924 3.977a8.96 8.96 0 01-.999 4.125m.023-8.25c-.076-.365.183-.75.575-.75h.908c.889 0 1.713.518 1.972 1.368.339 1.11.521 2.287.521 3.507 0 1.553-.295 3.036-.831 4.398C20.613 14.547 19.833 15 19 15h-1.053c-.472 0-.745-.556-.5-.96a8.95 8.95 0 00.303-.54m.023-8.25H16.48a4.5 4.5 0 01-1.423-.23l-3.114-1.04a4.5 4.5 0 00-1.423-.23H6.504c-.618 0-1.217.247-1.605.729A11.95 11.95 0 002.25 12c0 .434.023.863.068 1.285C2.427 14.306 3.346 15 4.372 15h3.126c.618 0 .991.724.725 1.282A7.471 7.471 0 007.5 19.5a2.25 2.25 0 002.25 2.25.75.75 0 00.75-.75v-.633c0-.573.11-1.14.322-1.672.304-.76.93-1.33 1.653-1.715a9.04 9.04 0 002.86-2.4c.498-.634 1.226-1.08 2.032-1.08h.384" />
                             </svg>
                         </button>
 
 
-                        <button title="comments" class="comments-btn"><svg xmlns="http://www.w3.org/2000/svg"
-                                fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                class="w-6 h-6 action-icon">
+                        <button title="comments" class="comments-btn"><svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 action-icon">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
                             </svg>

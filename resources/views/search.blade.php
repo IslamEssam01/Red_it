@@ -3,94 +3,7 @@
 
 
 @section('content')
-    @auth
-
-        <aside class="side-bar flex flex-col align-center ">
-
-
-
-            @if (strpos($user->image, 'images') === 0)
-                <a href="#"> <img src={{ asset("storage/{$user->image}") }} alt="user image" class="user-img"></a>
-            @else
-                <a href="#"> <img src={{ $user->image }} alt="user image" class="user-img"></a>
-            @endif
-
-            <a href="#" class="user-name">{{ $user->name }}</a>
-
-            <nav class="sidebar-posts flex flex-col ">
-                <div class="flex justify-space-between">
-                    <p class="box-title">Recent Posts</p>
-                    <a href={{ route('home') }} class="box-link">See All</a>
-                </div>
-
-                <div class="sidebar-posts-box flex flex-col">
-
-                    @foreach ($posts->reverse()->take(4) as $post)
-                        <div class="sidebar-post flex align-center">
-                            <a href="#" title="{{ $post->user->name }}"><img
-                                    src={{ asset("storage/{$post->user->image}") }} alt="user image" class="user-img-sm"></a>
-
-                            @if (preg_match('/\p{Arabic}/u', mb_substr($post->content, 0, 1)))
-                                <a dir="rtl" href="#" class="sidebar-post-content">{{ $post->content }}</a>
-                            @else
-                                <a dir="ltr" href="#" class="sidebar-post-content">{{ $post->content }}</a>
-                            @endif
-                        </div>
-                    @endforeach
-
-                </div>
-            </nav>
-            <nav class="sidebar-posts flex flex-col ">
-                <div class="flex justify-space-between">
-                    <p class="box-title">Liked Posts</p>
-                    <a href={{ route('likedPosts') }} class="box-link">See All</a>
-                </div>
-
-                <div class="sidebar-posts-box flex flex-col">
-
-                    @foreach (Auth::user()->likedPosts->take(4) as $post)
-                        <div class="sidebar-post flex align-center">
-                            <a href="#" title="{{ $post->user->name }}"><img
-                                    src={{ asset("storage/{$post->user->image}") }} alt="user image" class="user-img-sm"></a>
-
-                            @if (preg_match('/\p{Arabic}/u', mb_substr($post->content, 0, 1)))
-                                <a dir="rtl" href="#" class="sidebar-post-content">{{ $post->content }}</a>
-                            @else
-                                <a dir="ltr" href="#" class="sidebar-post-content">{{ $post->content }}</a>
-                            @endif
-                        </div>
-                    @endforeach
-
-
-                </div>
-            </nav>
-            <nav class="sidebar-posts flex flex-col ">
-                <div class="flex justify-space-between">
-                    <p class="box-title">Your Posts</p>
-                    <a href={{ route('userPosts') }} class="box-link">See All</a>
-                </div>
-
-                <div class="sidebar-posts-box flex flex-col align-center">
-
-                    @foreach (Auth::user()->posts->reverse()->take(4) as $post)
-                        <div class="sidebar-post flex align-center">
-                            @if (preg_match('/\p{Arabic}/u', mb_substr($post->content, 0, 1)))
-                                <a dir="rtl" href="#" class="sidebar-post-content">{{ $post->content }}</a>
-                            @else
-                                <a dir="ltr" href="#" class="sidebar-post-content">{{ $post->content }}</a>
-                            @endif
-                        </div>
-                    @endforeach
-
-
-                </div>
-            </nav>
-
-        </aside>
-    @endauth
-
-    {{-- The main is styled in css as 100vw , if the user is authed we subtract the sidebar from it --}}
-    <main @auth style="width: calc(100vw - 25rem);" @endauth class="main ">
+    <main class="main ">
 
         <div class="posts flex flex-col container ">
             {{-- The posts var come from the route , reverse to order it from latest to first --}}
@@ -172,9 +85,8 @@
                         </button>
 
 
-                        <button title="comments" class="comments-btn"><svg xmlns="http://www.w3.org/2000/svg"
-                                fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                class="w-6 h-6 action-icon">
+                        <button title="comments" class="comments-btn"><svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 action-icon">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
                             </svg>
