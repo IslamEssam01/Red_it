@@ -1,6 +1,6 @@
 # Red_it (a fake social media app)
 
-![image](https://github.com/IslamEssam01/Red_it/assets/135740521/96344a08-a9d8-4ffc-8c06-e86d72674c02)
+![image](https://github.com/IslamEssam01/Red_it/assets/135740521/6a8be836-ecfb-401d-a966-b1050ee1ba9f)
 
 A Simple social media app that has all the basic functionalities 
 Like Adding/showing/Deleting post, comments, and likes
