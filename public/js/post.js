@@ -72,8 +72,9 @@ function addComment(event, form) {
         .then((data) => {
             // Handle the response data here
             // console.log(data);
+            // const serverLink = window.location.origin;
 
-            fetch("addComment", {
+            fetch(`${homeUrl}/addComment`, {
                 method: "POST",
                 headers: {
                     "X-CSRF-TOKEN": "@csrf",

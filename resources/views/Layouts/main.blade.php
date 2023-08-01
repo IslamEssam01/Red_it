@@ -10,6 +10,7 @@
     <link rel="stylesheet" href={{ asset('css/general/home.css') }}>
     <link rel="stylesheet" href={{ asset('css/general/header.css') }}>
     <link rel="stylesheet" href={{ asset('css/general/formGeneral.css') }}>
+    <link rel="stylesheet" href={{ asset('css/general/userProfile.css') }}>
 
     <link rel="stylesheet" href={{ asset('css/user/sidebar.css') }}>
     <link rel="stylesheet" href={{ asset('css/user/Forms/formAddPost.css') }}>
@@ -25,9 +26,14 @@
 <body>
     <div class="display-none overlay"></div>
 
+
+
     @include('Includes.header')
 
     <script src={{ asset('js/searchModal.js') }}></script>
+    <script>
+        let homeUrl = "{{ route('home') }}";
+    </script>
     @yield('content')
 </body>
 

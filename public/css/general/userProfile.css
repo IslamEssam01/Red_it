@@ -1,0 +1,12 @@
+.user-info-box {
+    width: 50rem;
+
+    margin-top: 5rem;
+
+    gap: 2rem;
+}
+
+.email {
+    font-size: 1.953rem;
+    font-weight: 700;
+}

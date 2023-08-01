@@ -10,13 +10,13 @@
                 <div class="post-box flex flex-col align-center">
                     <div class="flex justify-space-between post-header">
                         <div class="user-info flex align-center">
-                            <a href="#"><img src={{ asset("storage/{$post->user->image}") }} alt="user image"
+                            <a href={{ route('userProfile', $post->user->id) }}><img src={{ asset("storage/{$post->user->image}") }} alt="user image"
                                     class="post-user-img"></a>
                             <div class="post-details flex flex-col">
-                                <a href="#">
+                                <a href={{ route('userProfile', $post->user->id) }}>
                                     <p class="post-user-name">{{ $post->user->name }}</p>
                                 </a>
-                                <a href="#">
+                                <a href={{ route('showPost', $post->id) }}>
                                     <p class="created-at">{{ $post->created_at }}
                                     </p>
                                 </a>
@@ -97,11 +97,11 @@
                         <div class="comments flex flex-col">
                             @foreach ($post->comments as $commentKey => $comment)
                                 <div class="comment flex align-center">
-                                    <a href="#" class="comment-user-link"><img
+                                    <a href={{ route('userProfile', $comment->user->id) }} class="comment-user-link"><img
                                             src={{ asset("storage/{$comment->user->image}") }} alt="user image"
                                             class="comment-user-img"></a>
                                     <div class="comment-box flex flex-col">
-                                        <a href="#" class="commenter-name">{{ $comment->user->name }}</a>
+                                        <a href={{ route('userProfile', $comment->user->id) }} class="commenter-name">{{ $comment->user->name }}</a>
 
                                         {{-- Checks if the comment starts with arabic or not --}}
                                         @if (preg_match('/\p{Arabic}/u', mb_substr($comment->content, 0, 1)))

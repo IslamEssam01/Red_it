@@ -4,17 +4,29 @@
 
 @section('content')
     <main class="main ">
-
+        <div class="user-info-box flex flex-col container">
+            <div class="user-info flex align-center">
+                <a href={{ route('userProfile', $user->id) }}><img src={{ asset("storage/{$user->image}") }} alt="user image"
+                        class="post-user-img"></a>
+                <div class="post-details flex flex-col">
+                    <a href={{ route('userProfile', $user->id) }}>
+                        <p class="post-user-name">{{ $user->name }}</p>
+                    </a>
+                </div>
+            </div>
+            <p class="email">Email : {{ $user->email }}</p>
+        </div>
         <div class="posts flex flex-col container ">
             {{-- The posts var come from the route , reverse to order it from latest to first --}}
             @foreach ($posts->reverse() as $key => $post)
                 <div class="post-box flex flex-col align-center">
                     <div class="flex justify-space-between post-header">
                         <div class="user-info flex align-center">
-                            <a href={{ route('userProfile', $post->user->id) }} ><img src={{ asset("storage/{$post->user->image}") }} alt="user image"
+                            <a href={{ route('userProfile', $post->user->id) }}><img
+                                    src={{ asset("storage/{$post->user->image}") }} alt="user image"
                                     class="post-user-img"></a>
                             <div class="post-details flex flex-col">
-                                <a href={{ route('userProfile', $post->user->id) }} >
+                                <a href={{ route('userProfile', $post->user->id) }}>
                                     <p class="post-user-name">{{ $post->user->name }}</p>
                                 </a>
                                 <a href={{ route('showPost', $post->id) }}>
@@ -100,11 +112,12 @@
                         <div class="comments flex flex-col">
                             @foreach ($post->comments as $commentKey => $comment)
                                 <div class="comment flex align-center">
-                                    <a href={{ route('userProfile', $comment->user->id) }}  class="comment-user-link"><img
-                                            src={{ asset("storage/{$comment->user->image}") }} alt="user image"
-                                            class="comment-user-img"></a>
+                                    <a href={{ route('userProfile', $comment->user->id) }}{{ route('userProfile', $comment->user->id) }}
+                                        class="comment-user-link"><img src={{ asset("storage/{$comment->user->image}") }}
+                                            alt="user image" class="comment-user-img"></a>
                                     <div class="comment-box flex flex-col">
-                                        <a href={{ route('userProfile', $comment->user->id) }}  class="commenter-name">{{ $comment->user->name }}</a>
+                                        <a href={{ route('userProfile', $comment->user->id) }}{{ route('userProfile', $comment->user->id) }}
+                                            class="commenter-name">{{ $comment->user->name }}</a>
 
                                         {{-- Checks if the comment starts with arabic or not --}}
                                         @if (preg_match('/\p{Arabic}/u', mb_substr($comment->content, 0, 1)))

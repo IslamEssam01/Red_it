@@ -17,7 +17,9 @@ use App\Http\Controllers\UserController;
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
 |
+
 */
+
 
 
 Route::get('/', function () {
@@ -76,3 +78,7 @@ Route::middleware('auth')->group(function () {
 Route::post('/addComment', [CommentController::class, 'showPartial'])->name('showPartialComment');
 
 Route::get('/search', [PostController::class, 'search'])->name('search');
+
+Route::get('/post/{id}/show', [PostController::class, 'show'])->name('showPost');
+
+Route::get('/user/{id}/profile', [UserController::class, 'profile'])->name('userProfile');

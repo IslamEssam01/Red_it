@@ -10,12 +10,13 @@
 
 
             @if (strpos($user->image, 'images') === 0)
-                <a href="#"> <img src={{ asset("storage/{$user->image}") }} alt="user image" class="user-img"></a>
+                <a href={{ route('userProfile', $user->id) }}> <img src={{ asset("storage/{$user->image}") }} alt="user image"
+                        class="user-img"></a>
             @else
-                <a href="#"> <img src={{ $user->image }} alt="user image" class="user-img"></a>
+                <a href={{ route('userProfile', $user->id) }}> <img src={{ $user->image }} alt="user image" class="user-img"></a>
             @endif
 
-            <a href="#" class="user-name">{{ $user->name }}</a>
+            <a href={{ route('userProfile', $user->id) }} class="user-name">{{ $user->name }}</a>
 
             <nav class="sidebar-posts flex flex-col ">
                 <div class="flex justify-space-between">
@@ -27,13 +28,15 @@
 
                     @foreach ($posts->reverse()->take(4) as $post)
                         <div class="sidebar-post flex align-center">
-                            <a href="#" title="{{ $post->user->name }}"><img
+                            <a href={{ route('userProfile', $post->user->id) }} title="{{ $post->user->name }}"><img
                                     src={{ asset("storage/{$post->user->image}") }} alt="user image" class="user-img-sm"></a>
 
                             @if (preg_match('/\p{Arabic}/u', mb_substr($post->content, 0, 1)))
-                                <a dir="rtl" href="#" class="sidebar-post-content">{{ $post->content }}</a>
+                                <a dir="rtl" href={{ route('showPost', $post->id) }}
+                                    class="sidebar-post-content">{{ $post->content }}</a>
                             @else
-                                <a dir="ltr" href="#" class="sidebar-post-content">{{ $post->content }}</a>
+                                <a dir="ltr" href={{ route('showPost', $post->id) }}
+                                    class="sidebar-post-content">{{ $post->content }}</a>
                             @endif
                         </div>
                     @endforeach
@@ -50,13 +53,15 @@
 
                     @foreach (Auth::user()->likedPosts->take(4) as $post)
                         <div class="sidebar-post flex align-center">
-                            <a href="#" title="{{ $post->user->name }}"><img
+                            <a href={{ route('userProfile', $post->user->id) }} title="{{ $post->user->name }}"><img
                                     src={{ asset("storage/{$post->user->image}") }} alt="user image" class="user-img-sm"></a>
 
                             @if (preg_match('/\p{Arabic}/u', mb_substr($post->content, 0, 1)))
-                                <a dir="rtl" href="#" class="sidebar-post-content">{{ $post->content }}</a>
+                                <a dir="rtl" href={{ route('showPost', $post->id) }}
+                                    class="sidebar-post-content">{{ $post->content }}</a>
                             @else
-                                <a dir="ltr" href="#" class="sidebar-post-content">{{ $post->content }}</a>
+                                <a dir="ltr" href={{ route('showPost', $post->id) }}
+                                    class="sidebar-post-content">{{ $post->content }}</a>
                             @endif
                         </div>
                     @endforeach
@@ -75,9 +80,11 @@
                     @foreach (Auth::user()->posts->reverse()->take(4) as $post)
                         <div class="sidebar-post flex align-center">
                             @if (preg_match('/\p{Arabic}/u', mb_substr($post->content, 0, 1)))
-                                <a dir="rtl" href="#" class="sidebar-post-content">{{ $post->content }}</a>
+                                <a dir="rtl" href={{ route('showPost', $post->id) }}
+                                    class="sidebar-post-content">{{ $post->content }}</a>
                             @else
-                                <a dir="ltr" href="#" class="sidebar-post-content">{{ $post->content }}</a>
+                                <a dir="ltr" href={{ route('showPost', $post->id) }}
+                                    class="sidebar-post-content">{{ $post->content }}</a>
                             @endif
                         </div>
                     @endforeach
@@ -98,13 +105,14 @@
                 <div class="post-box flex flex-col align-center">
                     <div class="flex justify-space-between post-header">
                         <div class="user-info flex align-center">
-                            <a href="#"><img src={{ asset("storage/{$post->user->image}") }} alt="user image"
+                            <a href={{ route('userProfile', $post->user->id) }}><img
+                                    src={{ asset("storage/{$post->user->image}") }} alt="user image"
                                     class="post-user-img"></a>
                             <div class="post-details flex flex-col">
-                                <a href="#">
+                                <a href={{ route('userProfile', $post->user->id) }}>
                                     <p class="post-user-name">{{ $post->user->name }}</p>
                                 </a>
-                                <a href="#">
+                                <a href={{ route('showPost', $post->id) }}>
                                     <p class="created-at">{{ $post->created_at }}
                                     </p>
                                 </a>
@@ -188,11 +196,12 @@
                         <div class="comments flex flex-col">
                             @foreach ($post->comments as $commentKey => $comment)
                                 <div class="comment flex align-center">
-                                    <a href="#" class="comment-user-link"><img
+                                    <a href={{ route('userProfile', $comment->user->id) }} class="comment-user-link"><img
                                             src={{ asset("storage/{$comment->user->image}") }} alt="user image"
                                             class="comment-user-img"></a>
                                     <div class="comment-box flex flex-col">
-                                        <a href="#" class="commenter-name">{{ $comment->user->name }}</a>
+                                        <a href={{ route('userProfile', $comment->user->id) }}
+                                            class="commenter-name">{{ $comment->user->name }}</a>
 
                                         {{-- Checks if the comment starts with arabic or not --}}
                                         @if (preg_match('/\p{Arabic}/u', mb_substr($comment->content, 0, 1)))

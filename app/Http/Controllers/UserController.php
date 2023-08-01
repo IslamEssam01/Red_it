@@ -82,6 +82,14 @@ class UserController extends Controller
 
     public function userPosts()
     {
-        return view('User.userPosts')->with('user', Auth::user())->with('posts',Auth::user()->posts);
+        return view('User.userPosts')->with('user', Auth::user())->with('posts', Auth::user()->posts);
+    }
+
+    public function profile()
+    {
+
+
+        return view('User.profile')->with('user', Auth::user())->with('posts', Auth::user()->posts);
+
     }
 }
