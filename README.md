@@ -4,7 +4,7 @@
 
 A Simple social media app that has all the basic functionalities 
 Like Adding/showing/Deleting post, comments, and likes
-also the functionality to search for posts
+,also the functionality to search for posts
 
 ## Technologies Used
 
