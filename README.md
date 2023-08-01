@@ -1,4 +1,4 @@
-#Red_it (a fake social media app)
+# Red_it (a fake social media app)
 
 ![image](https://github.com/IslamEssam01/Red_it/assets/135740521/96344a08-a9d8-4ffc-8c06-e86d72674c02)
 
